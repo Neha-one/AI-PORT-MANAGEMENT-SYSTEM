@@ -1,6 +1,8 @@
+import AppRoutes from "./routes/AppRoutes";
+
 function App() {
   return (
-    <h2>AI PORT MANAGEMENT SYSTEM</h2>
+    <AppRoutes />
   )
 }
 export default App;
