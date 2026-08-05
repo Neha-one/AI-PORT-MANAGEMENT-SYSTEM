@@ -22,7 +22,12 @@ public class SecurityConfig {
     private static final String[] PUBLIC_URLS = {
 
             "/auth/admin/port-management/signup",
+<<<<<<< HEAD
             "/auth/**",
+=======
+            "/auth/admin/port-management/login",
+            "/auth/admin/port-management/logout",
+>>>>>>> ankit
             "/v3/api-docs/**",
             "/v3/api-docs",
             "/swagger-ui/**",
@@ -43,6 +48,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
+<<<<<<< HEAD
             // Disable CSRF for REST APIs
             .csrf(AbstractHttpConfigurer::disable)
             
@@ -60,6 +66,24 @@ public class SecurityConfig {
             
             // Allow frames for Swagger UI if embedded
             .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
+=======
+                // Disable CSRF for REST APIs
+                .csrf(AbstractHttpConfigurer::disable)
+
+                // Enable CORS with default configuration source
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+
+                // Keep sessions available so login can persist the authenticated admin
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+
+                // Configure Request Authorization
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(PUBLIC_URLS).permitAll()
+                        .anyRequest().authenticated())
+
+                // Allow frames for Swagger UI if embedded
+                .headers(headers -> headers.frameOptions(frame -> frame.sameOrigin()));
+>>>>>>> ankit
 
         return http.build();
     }

@@ -2,6 +2,10 @@ package com.portmanagement.backend.controller;
 
 import com.portmanagement.backend.dto.ApiResponse;
 import com.portmanagement.backend.dto.AdministratorResponse;
+<<<<<<< HEAD
+=======
+import com.portmanagement.backend.dto.AdministratorLoginRequest;
+>>>>>>> ankit
 import com.portmanagement.backend.dto.AdministratorSignupRequest;
 import com.portmanagement.backend.service.AdministratorService;
 import jakarta.validation.Valid;
@@ -10,6 +14,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
+=======
+import jakarta.servlet.http.HttpServletRequest;
+
+>>>>>>> ankit
 @RestController
 @RequestMapping("/auth/admin/port-management")
 @RequiredArgsConstructor
@@ -27,4 +36,24 @@ public class AdministratorAuthController {
                 .status(HttpStatus.CREATED)
                 .body(ApiResponse.success("Administrator account registered successfully with ADMIN role", response));
     }
+<<<<<<< HEAD
+=======
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse<AdministratorResponse>> login(
+            @Valid @RequestBody AdministratorLoginRequest request,
+            HttpServletRequest httpServletRequest) {
+
+        AdministratorResponse response = administratorService.loginAdministrator(request, httpServletRequest);
+
+        return ResponseEntity.ok(ApiResponse.success("Administrator logged in successfully", response));
+    }
+
+    @PostMapping("/logout")
+    public ResponseEntity<ApiResponse<Void>> logout(HttpServletRequest request) {
+        administratorService.logoutAdministrator(request);
+
+        return ResponseEntity.ok(ApiResponse.success("Administrator logged out successfully", null));
+    }
+>>>>>>> ankit
 }
