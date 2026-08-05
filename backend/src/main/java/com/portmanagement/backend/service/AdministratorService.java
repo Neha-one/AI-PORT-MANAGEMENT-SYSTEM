@@ -10,7 +10,7 @@ public interface AdministratorService {
 
     AdministratorResponse registerAdministrator(AdministratorSignupRequest request);
 
-    AdministratorResponse loginAdministrator(AdministratorLoginRequest request, HttpServletRequest request);
+    AdministratorResponse loginAdministrator(AdministratorLoginRequest request, HttpServletRequest request1);
 
     void logoutAdministrator(HttpServletRequest request);
 }
