@@ -1,15 +1,18 @@
 package com.portmanagement.backend.service.impl;
 
+import com.portmanagement.backend.dto.AdministratorLoginRequest;
 import com.portmanagement.backend.dto.AdministratorResponse;
 import com.portmanagement.backend.dto.AdministratorSignupRequest;
 import com.portmanagement.backend.entity.Administrator;
 import com.portmanagement.backend.repository.AdministratorRepository;
 import com.portmanagement.backend.service.AdministratorService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 @Service
 @RequiredArgsConstructor
 public class AdministratorServiceImpl implements AdministratorService {
@@ -41,6 +44,38 @@ public class AdministratorServiceImpl implements AdministratorService {
         Administrator savedAdmin = administratorRepository.save(administrator);
 
         return mapToResponse(savedAdmin);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public AdministratorResponse loginAdministrator(AdministratorLoginRequest request, HttpServletRequest httpServletRequest) {
+        String identifier = request.getIdentifier().trim();
+
+        Administrator administrator = administratorRepository
+                .findByEmailIgnoreCaseOrEmployeeIdIgnoreCase(identifier, identifier)
+                .orElseThrow(() -> new BadCredentialsException("Invalid credentials"));
+
+        if (!passwordEncoder.matches(request.getPassword(), administrator.getPassword())) {
+            throw new BadCredentialsException("Invalid credentials");
+        }
+
+        if (!administrator.isActive()) {
+            throw new IllegalArgumentException("Administrator account is inactive");
+        }
+
+        HttpSession session = httpServletRequest.getSession(true);
+        session.setAttribute("ADMINISTRATOR_ID", administrator.getId());
+        session.setAttribute("ADMINISTRATOR_ROLE", administrator.getRole());
+
+        return mapToResponse(administrator);
+    }
+
+    @Override
+    public void logoutAdministrator(HttpServletRequest request) {
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
     }
 
     private synchronized String generateSequentialEmployeeId() {
