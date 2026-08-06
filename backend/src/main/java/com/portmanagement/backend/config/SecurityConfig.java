@@ -23,6 +23,7 @@ public class SecurityConfig {
             "/auth/admin/port-management/signup",
             "/auth/admin/port-management/login",
             "/auth/admin/port-management/logout",
+            "/api/**",
             "/v3/api-docs/**",
             "/v3/api-docs",
             "/swagger-ui/**",
