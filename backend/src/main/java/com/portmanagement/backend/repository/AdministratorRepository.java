@@ -13,11 +13,8 @@ public interface AdministratorRepository extends JpaRepository<Administrator, Lo
 
     Optional<Administrator> findByEmployeeId(String employeeId);
 
-<<<<<<< HEAD
-=======
     Optional<Administrator> findByEmailIgnoreCaseOrEmployeeIdIgnoreCase(String email, String employeeId);
 
->>>>>>> ankit
     boolean existsByEmail(String email);
 
     boolean existsByEmployeeId(String employeeId);
