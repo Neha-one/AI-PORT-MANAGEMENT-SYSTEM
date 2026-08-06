@@ -1,22 +1,31 @@
 package com.portmanagement.backend.controller;
 
 import com.portmanagement.backend.dto.ApiResponse;
+<<<<<<< HEAD
 import com.portmanagement.backend.dto.AdministratorResponse;
 
 import com.portmanagement.backend.dto.AdministratorLoginRequest;
 
+=======
+import com.portmanagement.backend.dto.AdministratorLoginRequest;
+import com.portmanagement.backend.dto.AdministratorResponse;
+>>>>>>> 5619659 (error fixed)
 import com.portmanagement.backend.dto.AdministratorSignupRequest;
 import com.portmanagement.backend.service.AdministratorService;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+<<<<<<< HEAD
 
 import jakarta.servlet.http.HttpServletRequest;
 
 
+=======
+>>>>>>> 5619659 (error fixed)
 @RestController
 @RequestMapping("/auth/admin/port-management")
 @RequiredArgsConstructor
@@ -32,25 +41,38 @@ public class AdministratorAuthController {
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
-                .body(ApiResponse.success("Administrator account registered successfully with ADMIN role", response));
+                .body(ApiResponse.success(
+                        "Administrator account registered successfully with ADMIN role",
+                        response));
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5619659 (error fixed)
 
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AdministratorResponse>> login(
             @Valid @RequestBody AdministratorLoginRequest request,
             HttpServletRequest httpServletRequest) {
 
-        AdministratorResponse response = administratorService.loginAdministrator(request, httpServletRequest);
+        AdministratorResponse response =
+                administratorService.loginAdministrator(request, httpServletRequest);
 
-        return ResponseEntity.ok(ApiResponse.success("Administrator logged in successfully", response));
+        return ResponseEntity.ok(
+                ApiResponse.success("Administrator logged in successfully", response));
     }
 
     @PostMapping("/logout")
     public ResponseEntity<ApiResponse<Void>> logout(HttpServletRequest request) {
+
         administratorService.logoutAdministrator(request);
 
-        return ResponseEntity.ok(ApiResponse.success("Administrator logged out successfully", null));
+        return ResponseEntity.ok(
+                ApiResponse.success("Administrator logged out successfully", null));
     }
+<<<<<<< HEAD
 
 }
+=======
+}
+>>>>>>> 5619659 (error fixed)
