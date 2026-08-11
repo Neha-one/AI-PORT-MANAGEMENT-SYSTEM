@@ -1,9 +1,9 @@
 package com.portmanagement.backend.controller;
 
-import com.portmanagement.backend.dto.ApiResponse;
 import com.portmanagement.backend.dto.AdministratorLoginRequest;
 import com.portmanagement.backend.dto.AdministratorResponse;
 import com.portmanagement.backend.dto.AdministratorSignupRequest;
+import com.portmanagement.backend.dto.ApiResponse;
 import com.portmanagement.backend.service.AdministratorService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -23,7 +23,8 @@ public class AdministratorAuthController {
     public ResponseEntity<ApiResponse<AdministratorResponse>> signup(
             @Valid @RequestBody AdministratorSignupRequest request) {
 
-        AdministratorResponse response = administratorService.registerAdministrator(request);
+        AdministratorResponse response =
+                administratorService.registerAdministrator(request);
 
         return ResponseEntity
                 .status(HttpStatus.CREATED)
