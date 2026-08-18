@@ -1,30 +1,53 @@
 import { useEffect } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
+
 import "./styles.css";
+
 import AuthScreen from "./components/AuthScreen";
 import DashboardLayout from "./components/DashboardLayout";
 import OverviewSection from "./components/OverviewSection";
 import VesselSection from "./components/VesselSection";
 import BerthSection from "./components/BerthSection";
 import ContainerSection from "./components/ContainerSection";
+
 import usePortStore from "./store/usePortStore";
 
 function App() {
-  const loadDashboard = usePortStore((state) => state.loadDashboard);
-  const isAuthenticated = usePortStore((state) => state.isAuthenticated);
+  const loadDashboard = usePortStore(
+    (state) => state.loadDashboard,
+  );
+
+  const isAuthenticated = usePortStore(
+    (state) => state.isAuthenticated,
+  );
 
   useEffect(() => {
-    loadDashboard();
-  }, [loadDashboard]);
+    if (isAuthenticated) {
+      loadDashboard();
+    }
+  }, [isAuthenticated, loadDashboard]);
 
   return (
     <Routes>
+      {/* ========================= */}
+      {/* LOGIN / ROOT */}
+      {/* ========================= */}
+
       <Route
         path="/"
         element={
-          isAuthenticated ? <Navigate to="/overview" replace /> : <AuthScreen />
+          isAuthenticated ? (
+            <Navigate to="/overview" replace />
+          ) : (
+            <AuthScreen />
+          )
         }
       />
+
+      {/* ========================= */}
+      {/* OVERVIEW */}
+      {/* ========================= */}
+
       <Route
         path="/overview"
         element={
@@ -37,6 +60,11 @@ function App() {
           )
         }
       />
+
+      {/* ========================= */}
+      {/* VESSELS */}
+      {/* ========================= */}
+
       <Route
         path="/vessels"
         element={
@@ -49,6 +77,11 @@ function App() {
           )
         }
       />
+
+      {/* ========================= */}
+      {/* BERTHS */}
+      {/* ========================= */}
+
       <Route
         path="/berths"
         element={
@@ -61,6 +94,11 @@ function App() {
           )
         }
       />
+
+      {/* ========================= */}
+      {/* CONTAINERS */}
+      {/* ========================= */}
+
       <Route
         path="/containers"
         element={
@@ -73,7 +111,15 @@ function App() {
           )
         }
       />
-      <Route path="*" element={<Navigate to="/" replace />} />
+
+      {/* ========================= */}
+      {/* UNKNOWN ROUTE */}
+      {/* ========================= */}
+
+      <Route
+        path="*"
+        element={<Navigate to="/" replace />}
+      />
     </Routes>
   );
 }
