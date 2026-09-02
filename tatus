@@ -1,0 +1,26 @@
+*   [33m6586bd6[m[33m ([m[1;31morigin/ankit[m[33m)[m Merge pull request #2 from Neha-one/main
+[31m|[m[32m\[m  
+[31m|[m *   [33mf37d32a[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m fixed issues
+[31m|[m [33m|[m[31m\[m  
+[31m|[m [33m|[m[31m/[m  
+[31m|[m[31m/[m[33m|[m   
+* [33m|[m [33m3d9b6de[m error fixed
+* [33m|[m [33mc6dc21e[m fixing issue
+* [33m|[m [33m4d96f1d[m error resolved
+* [33m|[m [33m75ba597[m created login and logout controller
+* [33m|[m [33m0e206e1[m Add .env to .gitignore
+* [33m|[m [33m3cf761e[m initail commit
+* [33m|[m [33m62edd5d[m implemented
+* [33m|[m [33ma0a3018[m implemented signup for adminstrator
+* [33m|[m [33mc7dc28c[m add these files
+* [33m|[m [33m013e629[m initial commit
+ [33m/[m  
+*   [33m6b07e44[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;32marjun[m[33m)[m Merge pull request #1 from Neha-one/arjun
+[35m|[m[36m\[m  
+[35m|[m * [33m2c93b4a[m[33m ([m[1;31morigin/arjun[m[33m)[m implemented
+[35m|[m * [33ma2b6424[m implemented signup for adminstrator
+[35m|[m[35m/[m  
+[35m|[m * [33mc4c6040[m[33m ([m[1;31morigin/neha[m[33m)[m add thse file
+[35m|[m * [33m75d8852[m add these files
+[35m|[m[35m/[m  
+* [33m9170d4b[m add these files
